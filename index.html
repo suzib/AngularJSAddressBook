@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Address Book</title>
+	<meta name="description" content="Address Book"/>
+	<link rel="stylesheet" type="text/css" href="address_book.css" />
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="scripts/address_book.js"></script>
+</head>
+
+<body data-ng-app="app" data-ng-controller="AppCtrl as app">
+
+  <h1>Address Book</h1>
+
+  <div class="add-contact">
+  		<h2>Add New Contact</h2>
+	   <input class="contact-item" type="text" name="ls-name" data-ng-model="app.person.first_name" placeholder="First Name" /> *<br />
+	  <input class="contact-item" type="text" name="ls-surname" data-ng-model="app.person.surname" placeholder="Surname" /> *<br />
+	  <input class="contact-item" type="text" name="ls-phone-number" data-ng-model="app.person.phone_number" placeholder="Phone Number" min="11" max="11" /><br />
+	  <textarea rows="4" cols="30" class="ls-address contact-item" name="ls-address" data-ng-model="app.person.address" placeholder="Address"></textarea><br />
+	  <input type="text" class="ls-email" name="ls-email" data-ng-model="app.person.email" placeholder="Email" type="email" /><br />
+	  <button class="add button" data-ng-click="app.addPerson(app.person)">Add</button>
+	  <div class="search">
+		  	<h2>Search for a Contact</h2>
+			<input class="search-item" data-ng-model="searchText" /><br />
+			<button class="search button">Search</button>
+		</div>
+</div>
+
+<div class="contact-list">
+  <h2>Contacts</h2>
+  <div id="contacts">
+    <ul class="person-list">
+        <li class="person" data-ng-repeat="person in app.people | filter: searchText | orderBy:['surname', 'first_name']" data-key="{{person.id}}">
+            <div class="contact-details-{{person.id}} contact-details">
+                <span>Name: {{person.first_name}}</span> <span>{{person.surname}}</span><br />
+                <span>Address: {{person.address}}</span><br />
+                <span>Phone number: {{person.phone_number}}</span><br />
+                <span>Email address: {{person.email}}</span>
+                <div class="contact-buttons">
+                <button class="edit button">Edit</button>
+                <button class="delete button" data-ng-click="app.deletePerson(person, person.id)">Delete</button>
+            </div>  
+            </div>
+            <div class="edit-contact-{{person.id}} edit-contact hide">
+              <span>Name: </span><input class="contact-item" type="text" name="ls-name" data-ng-model="app.editPerson.first_name" placeholder="{{person.first_name}}" />
+                <input class="contact-item" type="text" name="ls-surname" data-ng-model="app.editPerson.surname" placeholder="{{person.surname}}" /><br />
+                <span>Phone Number: </span><input class="contact-item" type="text" name="ls-phone-number" data-ng-model="app.editPerson.phone_number" placeholder="{{person.phone_number}}" min="11" max="11" /><br />
+                <span>Address: </span><textarea rows="4" cols="30" class="ls-address contact-item" name="ls-address" data-ng-model="app.editPerson.address" placeholder="{{person.address}}"></textarea><br />
+                <span>Email Address: </span><input type="text" class="ls-email" name="ls-email" data-ng-model="app.editPerson.email" placeholder="{{person.email}}" type="email" /><br />
+                <div class="contact-buttons">
+                  <button class="save button" data-ng-click="app.saveEdit(app.editPerson, person.id)">Save</button>
+                </div>
+            </div>        
+        </li>
+    </ul>
+  </div>
+</div>
+<script src="scripts/angular.js"></script>
+<script>
+
+var app = angular.module("app", []);
+
+app.controller("AppCtrl", function($http) {
+    var app = this;
+    $http.get("http://fast-gorge.herokuapp.com/contacts")
+      .success(function(data) {
+        app.people = data;
+      })
+
+    app.addPerson = function(person) {
+        console.log(person);
+        $http.post("http://fast-gorge.herokuapp.com/contacts", person)
+          .success(function(data) {
+            console.log(data);
+            //app.people = data;
+          })
+    }
+
+    app.saveEdit = function(person, id) {
+      console.log(person + '-' + id);
+        $http.put("http://fast-gorge.herokuapp.com/contacts/" + id, person)
+          .success(function(data) {
+            console.log(data);
+            //app.people = data;
+          })
+    }
+
+    app.deletePerson = function(person, id) {
+      console.log(person + '-' + id);
+        $http.delete("http://fast-gorge.herokuapp.com/contacts/" + id, person)
+          .success(function(data) {
+            console.log(data);
+            //app.people = data;
+          })
+    }
+})
+
+</script>
+  
+</body>
+</html>

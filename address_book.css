@@ -1,0 +1,97 @@
+ body {
+	font-family: Verdana;
+	font-size: 11px;
+ }
+ #header {
+	font-size: 38px;
+	color: #489db0;
+	font-weight: bold;
+	padding: 10px;
+ }
+.person {
+	clear:both;
+	border: 1px solid #555;
+	padding: 10px;
+	min-height: 70px;
+ 	margin-bottom: 5px;
+ 	float: left;
+	list-style: none;
+}
+.hide {
+	display: none;
+}
+.search {
+	clear: left;
+	padding-top: 10px;
+}
+ .button {
+	position: relative;
+	padding: 3px 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	text-decoration: none;
+	cursor: pointer;
+	display: block;
+	float: left;
+	text-align: center;
+	line-height: 1;
+	border: solid 1px #555;
+	background: #555;
+	color: #fff;
+	margin: 10px 0 10px 10px;
+	font-size: 11px;
+	min-width: 46px
+}
+.button:hover {
+	text-decoration: none;
+	color: #555;
+	background: #fff;		
+ }
+ .delete {
+ 	border: solid 1px red;
+	background-color: red;
+}
+.delete:hover {
+	color: red;
+}
+ .add-contact {
+ 	float: left;
+ 	width: 300px;
+ }
+ .updated {
+ 	background-color: green;
+ }
+ .updated:hover {
+ 	background-color: #fff;
+ 	color: green;
+ 	border: solid 1px green;
+ }
+ .ls-email {
+ 	width: 220px;
+ 	margin-left: 2px;
+ }
+ .contact-item {
+    text-transform: capitalize;
+}
+.add, .search {
+	margin-left: 0px
+}
+.address {
+	min-height: 13px;
+	width: 200px;
+	overflow-wrap: initial;
+	display: inline-block;
+}
+ .contact-list, .contact-details {
+ 	float: left;
+ }
+ .contact-details, .edit-contact {
+ 	width: 250px;
+ }
+ .contact-buttons {
+ 	float:right;
+ }
+ .person-list {
+ 	padding-left: 0px;
+ }
