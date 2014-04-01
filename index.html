@@ -6,8 +6,6 @@
 	<title>Address Book</title>
 	<meta name="description" content="Address Book"/>
 	<link rel="stylesheet" type="text/css" href="address_book.css" />
-	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-	<script type="text/javascript" src="scripts/address_book.js"></script>
 </head>
 
 <body data-ng-app="app" data-ng-controller="AppCtrl as app">
@@ -59,46 +57,8 @@
   </div>
 </div>
 <script src="scripts/angular.js"></script>
-<script>
-
-var app = angular.module("app", []);
-
-app.controller("AppCtrl", function($http) {
-    var app = this;
-    $http.get("http://fast-gorge.herokuapp.com/contacts")
-      .success(function(data) {
-        app.people = data;
-      })
-
-    app.addPerson = function(person) {
-        console.log(person);
-        $http.post("http://fast-gorge.herokuapp.com/contacts", person)
-          .success(function(data) {
-            console.log(data);
-            //app.people = data;
-          })
-    }
-
-    app.saveEdit = function(person, id) {
-      console.log(person + '-' + id);
-        $http.put("http://fast-gorge.herokuapp.com/contacts/" + id, person)
-          .success(function(data) {
-            console.log(data);
-            //app.people = data;
-          })
-    }
-
-    app.deletePerson = function(person, id) {
-      console.log(person + '-' + id);
-        $http.delete("http://fast-gorge.herokuapp.com/contacts/" + id, person)
-          .success(function(data) {
-            console.log(data);
-            //app.people = data;
-          })
-    }
-})
-
-</script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="scripts/address_book.js"></script>
   
 </body>
 </html>
