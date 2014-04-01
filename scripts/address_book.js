@@ -1,5 +1,3 @@
- $(document).ready(function() {
-
 	$('.contact-list').on('click', '.edit', function() {
 		var $this = $(this);
 		var editKey = $this.parents('.person').attr('data-key');
@@ -44,5 +42,3 @@ app.controller("AppCtrl", function($http) {
     }
 
 })
-
- });
