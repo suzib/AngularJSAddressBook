@@ -30,7 +30,9 @@ app.controller("AppCtrl", function($http) {
 
     app.saveEdit = function(person, id) {
         $http.put("http://fast-gorge.herokuapp.com/contacts/" + id, person).success(function(data) {
-            //app.people.data;
+            var index = app.people.indexOf(data);
+			app.people.splice(index,1);
+            app.people.push(data); 
           })
     }
 
