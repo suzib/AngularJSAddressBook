@@ -38,10 +38,18 @@
                 <span>Phone number: {{person.phone_number}}</span><br />
                 <span>Email address: {{person.email}}</span>
                 <div class="contact-buttons">
-                <button class="edit button">Edit</button>
-                <button class="delete button" data-ng-click="app.deletePerson(person, person.id)">Delete</button>
-            </div>  
+                  <button class="edit button">Edit</button>
+                  <button class="delete button" data-ng-click="app.deletePerson(person, person.id)">Delete</button>
+              </div> 
             </div>
+           <!--  <div class="confirm-delete hide">
+                <div class="opacity"></div>
+                <div class="sure-del-inners">
+                  <p>Are you sure you want to delete this contact?</p>
+                  <button class="delete button" data-ng-click="app.deletePerson(person, person.id)">Delete</button>
+                  <button class="cancel-delete button">Cancel</button>
+                </div>
+            </div> -->
             <div class="edit-contact-{{person.id}} edit-contact hide">
               <span>Name: </span><input class="contact-item" type="text" name="ls-name" data-ng-model="app.editPerson.first_name" placeholder="{{person.first_name}}" />
                 <input class="contact-item" type="text" name="ls-surname" data-ng-model="app.editPerson.surname" placeholder="{{person.surname}}" /><br />
